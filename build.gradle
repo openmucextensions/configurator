@@ -1,0 +1,41 @@
+
+configurations.create('embed')
+
+dependencies {
+  compile group: 'org.osgi', name: 'osgi_R4_compendium', version: '1.0'
+  compile group: 'org.slf4j', name: 'slf4j-api', version: '1.6.1'
+  compile project(':openmuc-core-api')
+
+  testCompile 'org.slf4j:slf4j-simple:1.7.12'
+  // testCompile 'org.mockito:mockito-all:1.10.19'
+  
+  // compile group: 'org.openmuc.jdlms', name: 'jdlms', version: jdlmsversion
+  // embed group: 'org.openmuc.jdlms', name: 'jdlms', version: jdlmsversion
+  // embed group: 'org.openmuc', name: 'jasn1-ber', version: jasn1berversion
+}
+
+jar {
+  manifest {
+    name = "OpenMUC Configurator"
+	instruction 'Bundle-ClassPath', '.'
+    instruction 'Service-Component', 'OSGI-INF/components.xml'
+    instruction 'Export-Package', ''
+    
+    // Using * for Import-Package imports all necessary dependencies. The problem is,
+    // that OSGi also tries to import self-contained libraries - so this packages
+    // must be excluded like the following example shows: 
+    
+    instruction 'Import-Package', '*'
+  }
+}
+
+jar {
+  into('lib') {
+    from configurations.embed
+  }
+}
+
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
