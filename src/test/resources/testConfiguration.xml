@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfg:configuration xmlns:cfg="http://www.openmuc.org/extensions/configuration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openmuc.org/extensions/configuration ../../main/resources/configuration.xsd ">
+	<cfg:component name="org.example.component1">
+		<username>testuser</username>
+		<password>secret</password>
+	</cfg:component>
+	<cfg:component name="org.example.component2">
+		<deleteValues>true</deleteValues>
+	</cfg:component>
+</cfg:configuration>

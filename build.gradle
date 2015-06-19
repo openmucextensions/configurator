@@ -6,8 +6,14 @@ dependencies {
   compile group: 'org.slf4j', name: 'slf4j-api', version: '1.6.1'
   compile project(':openmuc-core-api')
 
+  compile 'commons-configuration:commons-configuration:1.10'
+  compile 'commons-collections:commons-collections:3.2.1'
+
+  embed 'commons-configuration:commons-configuration:1.10'
+  embed 'commons-collections:commons-collections:3.2.1'
+
   testCompile 'org.slf4j:slf4j-simple:1.7.12'
-  // testCompile 'org.mockito:mockito-all:1.10.19'
+  testCompile 'org.mockito:mockito-all:1.10.19'
   
   // compile group: 'org.openmuc.jdlms', name: 'jdlms', version: jdlmsversion
   // embed group: 'org.openmuc.jdlms', name: 'jdlms', version: jdlmsversion
@@ -17,15 +23,10 @@ dependencies {
 jar {
   manifest {
     name = "OpenMUC Configurator"
-	instruction 'Bundle-ClassPath', '.'
-    instruction 'Service-Component', 'OSGI-INF/components.xml'
+	instruction 'Bundle-ClassPath', '.,lib/commons-logging-1.1.1.jar,lib/commons-collections-3.2.1.jar,lib/commons-configuration-1.10.jar,lib/commons-lang-2.6.jar' 
     instruction 'Export-Package', ''
-    
-    // Using * for Import-Package imports all necessary dependencies. The problem is,
-    // that OSGi also tries to import self-contained libraries - so this packages
-    // must be excluded like the following example shows: 
-    
-    instruction 'Import-Package', '*'
+    instruction 'Import-Package', '!org.apache.commons*,javax.xml.parsers;resolution:=optional,javax.xml;resolution:=optional,org.w3c.dom;resolution:=optional,org.xml.sax;resolution:=optional,javax.xml.transform;resolution:=optional', '*'
+    instruction 'Service-Component', 'OSGI-INF/components.xml'
   }
 }
 

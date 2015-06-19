@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.openmuc.org/extensions/configuration" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cfg="http://www.openmuc.org/extensions/configuration">
+
+    <annotation>
+    	<documentation>This schema describes an OpenMUC extensions configuration file</documentation></annotation>
+    <complexType name="ComponentConfigType">
+        <sequence>
+        	<any namespace="##any" minOccurs="0" maxOccurs="unbounded">
+        		<annotation>
+        			<documentation>properties for the specified component</documentation>
+        		</annotation></any>
+        </sequence>
+        <attribute name="name" type="string" use="required">
+        	<annotation>
+        		<documentation>the name of the component the following properties are for</documentation>
+        	</annotation></attribute>
+    </complexType>
+
+    <complexType name="ConfigurationType">
+    	<sequence>
+    		<element name="component" type="cfg:ComponentConfigType" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="configuration" type="cfg:ConfigurationType">
+    	<annotation>
+    		<documentation>the root element of a configuration file</documentation>
+    	</annotation></element>
+
+
+</schema>

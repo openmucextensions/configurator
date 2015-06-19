@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- OSGi ConfigAdmin service will provide the configuration properties to the component with the specified name -->
+	<component name="org.openmuc.extensions.core.configurator">
+		<username>testuser</username>
+		<password>secret</password>
+	</component>
+	<component name="test.component">
+		<testproperty>test</testproperty>
+	</component>
+</configuration>
