@@ -1,5 +1,5 @@
 ### OpenMUC Configurator
-Distribution of configuration properties from a file to OSGi bundles using the ConfigAdmin service.
+Distribution of configuration properties from a file to OSGi bundles using the ConfigAdmin service. The component is licensed under GPLv3.
 
 This component reads configuration properties from a file and distributes the artifacts using the OSGi ConfigurationAdmin service. The following code shows an example of a valid configuration file:
 
